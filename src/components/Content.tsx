@@ -1,7 +1,29 @@
 import { MovieCard } from '../components/MovieCard';
 import '../styles/content.scss';
 
-export function Content({ selectedGenre,movies }) {
+interface ContentProps {
+  selectedGenre: SelectedGenreProps;
+  // movies:MovieProps[];
+  movies: Array<MovieProps>;
+}
+
+interface SelectedGenreProps {
+  title:string;
+}
+
+interface MovieProps {
+  imdbID: string;
+  Title: string;
+  Poster: string;
+  Ratings: Array<{
+    Source: string;
+    Value: string;
+  }>;
+  Runtime: string;
+}
+
+
+export function Content({selectedGenre,movies }: ContentProps) {
 
   return (
     <>
@@ -11,7 +33,13 @@ export function Content({ selectedGenre,movies }) {
       <main>
           <div className="movies-list">
             {movies.map(movie => (
-              <MovieCard key ={movie.imdbID} title={movie.Title} poster={movie.Poster} runtime={movie.Runtime} rating={movie.Ratings[0].Value} />
+              <MovieCard 
+                key ={movie.imdbID} 
+                title={movie.Title} 
+                poster={movie.Poster} 
+                runtime={movie.Runtime} 
+                rating={movie.Ratings[0].Value} 
+              />
             ))}
           </div>
         </main>
@@ -19,5 +47,4 @@ export function Content({ selectedGenre,movies }) {
 
 
   )
-  // Complete aqui
 }

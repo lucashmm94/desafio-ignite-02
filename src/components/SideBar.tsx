@@ -2,7 +2,20 @@ import { Button } from '../components/Button';
 
 import '../styles/sidebar.scss';
 
-export function SideBar({genres,selectedGenreId,handleClickButton}) {
+
+interface SideBarProps {
+  selectedGenreId:number;
+  genres: Array<GenreResponseProps>;
+  handleClickButton: Function;
+}
+
+interface GenreResponseProps {
+  id: number;
+  name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
+  title: string;
+}
+
+export function SideBar({genres,selectedGenreId,handleClickButton}:SideBarProps) {
   <span>Watch<p>Me</p></span>
   
   return(
